@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <context id="TestTables" targetRuntime="MyBatis3">
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/test"
+                        userId="root"
+                        password="123456">
+        </jdbcConnection>
+
+        <javaTypeResolver >
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <!-- Java 模型对象生成器 -->
+        <javaModelGenerator targetPackage="com.hebaohua.springbootmybatisgenerator.entity"
+                            targetProject="${user.dir}/src/main/java"/>
+
+        <!-- SQL Mapper XML 生成器 -->
+        <sqlMapGenerator  targetPackage="mybatis.mappers" targetProject="${user.dir}/src/main/resources"/>
+
+        <!-- SQL Mapper Java 接口 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.hebaohua.springbootmybatisgenerator.mappers"
+                             targetProject="${user.dir}/src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <table tableName="user" domainObjectName="User" >
+            <property name="useActualColumnNames" value="true"/>
+            <generatedKey column="id" sqlStatement="MySQL" identity="true" />
+            <columnOverride column="name"/>
+            <columnOverride column="age"/>
+        </table>
+
+    </context>
+</generatorConfiguration>
